@@ -1,0 +1,53 @@
+{
+  "name": "encryption-sandbox",
+  "version": "1.0.0",
+  "description": "Visual Encryption Sandbox - AES, RC4, XOR, Permutations",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "package": "npm run build && electron-builder --win",
+    "package:dir": "npm run build && electron-builder --win --dir"
+  },
+  "keywords": ["encryption", "sandbox", "visual", "AES", "RC4", "XOR"],
+  "author": "Encryption Sandbox",
+  "license": "MIT",
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.294.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.8",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.encryption.sandbox",
+    "productName": "Encryption Sandbox",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "win": {
+      "target": ["nsis"],
+      "icon": "public/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ]
+  }
+}
